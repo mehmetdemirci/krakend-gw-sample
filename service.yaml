@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: krakend-gw-dev
+  namespace: krakend-dev
+  labels: 
+    app: krakend-gw
+    env: dev
+spec:
+  type: NodePort
+  ports:
+  - name: http
+    port: 2980
+    targetPort: 2980
+    nodePort: 30963
+    protocol: TCP
+  selector:
+    app: krakend-gw

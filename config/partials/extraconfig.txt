@@ -1,0 +1,13 @@
+  "github_com/devopsfaith/krakend-gologging": {
+    "level": "WARNING",
+    "prefix": "[KRAKEND]",
+    "syslog": true,
+    "stdout": true,
+    "format": "logstash"
+  },
+  "github_com/devopsfaith/krakend-logstash": {
+     "enabled": true
+  },
+  "github_com/devopsfaith/krakend/transport/http/server/handler": {
+    "name": ["router-plugin"]
+  }

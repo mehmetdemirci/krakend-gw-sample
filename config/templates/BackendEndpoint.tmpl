@@ -1,0 +1,25 @@
+{{define "TestEndpoint"}}
+
+{{$host := .}}
+
+{   
+    "endpoint": "/test/hello-world", 
+    "output_encoding": "no-op",
+    "headers_to_pass": ["*"],
+    "backend": [
+        {    
+            "host": ["{{ $host }}"],        
+            "url_pattern": "/hello-world",
+            "sd": "dns",
+            "disable_host_sanitize": true,
+            "encoding": "no-op",
+            "extra_config": {
+              "github.com/devopsfaith/krakend/transport/http/client/executor": {
+                "name": "proxy-plugin"
+              }
+            }
+        }
+    ]
+}
+
+{{end}}

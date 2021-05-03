@@ -1,0 +1,27 @@
+{{define "ExternalEndpoint"}}
+
+{
+          "endpoint": "/weather",
+          "querystring_params": [
+            "q",
+            "appid"
+          ],
+          "method": "GET",
+          "output_encoding": "no-op",
+          "backend": [
+              {
+                  "url_pattern": "/data/2.5/weather",
+                  "encoding": "no-op",
+                  "host": [
+                      "https://api.openweathermap.org"
+                  ],
+                  "extra_config": {
+                    "github.com/devopsfaith/krakend/transport/http/client/executor": {
+                      "name": "proxy-plugin"
+                    }
+                  }
+              }
+          ]
+}
+
+{{end}}

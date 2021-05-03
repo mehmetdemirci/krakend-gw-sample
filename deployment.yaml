@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: krakend-gw-dev
+  namespace: krakend-dev
+  labels:
+    app: krakend-gw
+    type: gateway
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: krakend-gw
+  template:
+    metadata:
+      labels:
+        app: krakend-gw
+        type: gateway
+        env: dev
+    spec:
+      containers:
+        - name: krakend-gw-dev
+          image: krakend-gw:1.0.0
+          ports:
+            - name: api-port
+              containerPort: 2980
+          readinessProbe:
+            httpGet:
+              path: /__health
+              port: api-port
+            failureThreshold: 1
+            periodSeconds: 30 
+          imagePullPolicy: IfNotPresent          
+          env:
+            - name: PORT
+              value: "2980"  
+            - name: ENV
+              value: "dev"           
+      terminationGracePeriodSeconds: 30
