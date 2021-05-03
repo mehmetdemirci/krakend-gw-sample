@@ -2,7 +2,7 @@
 
 This is a sample krakend api gateway that shows how to use KrakenD Flexible configuration and writing custom plugin.
 
-###Running
+### Running
 
 **Build docker image:**
 ```sh
